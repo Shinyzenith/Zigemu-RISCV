@@ -5,5 +5,7 @@ const Bus = @import("Bus.zig");
 pub fn main() !void {
     var cpu: CPU = undefined;
     cpu.reset();
-    std.debug.print("{d}\n", .{cpu.fetch(u8)});
+
+    cpu.bus.store(u8, cpu.program_counter, 0x45);
+    std.debug.print("{d}\n", .{cpu.peek(u8)});
 }

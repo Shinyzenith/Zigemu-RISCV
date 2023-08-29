@@ -30,6 +30,11 @@ pub fn fetch(self: *Self, comptime T: type) T {
     return inst;
 }
 
+/// Peek into an instructions of size @sizeOf(T) bit ahead without incrementing function pointer.
+pub fn peek(self: *Self, comptime T: type) T {
+    return self.bus.fetch(T, self.program_counter);
+}
+
 pub fn exec(self: *Self, inst: u32) i32 {
     _ = inst;
     _ = self;
