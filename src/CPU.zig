@@ -23,8 +23,8 @@ pub fn reset(self: *Self) void {
     self.bus.dram.reset();
 }
 
-pub fn fetch(self: *Self) u32 {
-    return self.bus.fetch(u32, self.program_counter);
+pub fn fetch(self: *Self, comptime T: type) T {
+    return self.bus.fetch(T, self.program_counter);
 }
 
 pub fn exec(self: *Self, inst: u32) i32 {

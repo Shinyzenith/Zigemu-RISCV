@@ -15,7 +15,7 @@ pub const memory_base_addr_offset = 0x800000000; // Since RISC-V uses memory map
 memory: [memory_size]u8 = undefined,
 
 pub fn reset(self: *Self) void {
-    @memset(&self.memory, 1);
+    @memset(&self.memory, 0x01);
 }
 
 pub fn fetch(self: *Self, comptime T: type, address: u64) T {
