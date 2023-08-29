@@ -24,7 +24,10 @@ pub fn reset(self: *Self) void {
 }
 
 pub fn fetch(self: *Self, comptime T: type) T {
-    return self.bus.fetch(T, self.program_counter);
+    const inst = self.bus.fetch(T, self.program_counter);
+    self.program_counter += @sizeOf(T);
+
+    return inst;
 }
 
 pub fn exec(self: *Self, inst: u32) i32 {
